@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>💰 Expense Tracker</h1>
+            <p>Track your income and expenses easily</p>
+        </header>
+
+        <main>
+            <!-- Summary -->
+            <section class="summary-section">
+                <h2>Summary</h2>
+                <div class="summary-grid">
+                    <div class="summary-card">
+                        <span class="summary-label">Income</span>
+                        <span id="sumIncome" class="summary-value amount-income">$0.00</span>
+                    </div>
+                    <div class="summary-card">
+                        <span class="summary-label">Expenses</span>
+                        <span id="sumExpense" class="summary-value amount-expense">$0.00</span>
+                    </div>
+                    <div class="summary-card">
+                        <span class="summary-label">Balance</span>
+                        <span id="sumBalance" class="summary-value">$0.00</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Excluded Summary -->
+            <section class="summary-section">
+                <h2>Excluded Summary</h2>
+                <div class="summary-grid">
+                    <div class="summary-card">
+                        <span class="summary-label">Income</span>
+                        <span id="sumIncomeExcluded" class="summary-value amount-income">$0.00</span>
+                    </div>
+                    <div class="summary-card">
+                        <span class="summary-label">Expenses</span>
+                        <span id="sumExpenseExcluded" class="summary-value amount-expense">$0.00</span>
+                    </div>
+                    <div class="summary-card">
+                        <span class="summary-label">Balance</span>
+                        <span id="sumBalanceExcluded" class="summary-value">$0.00</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Filters -->
+            <section class="filters-section">
+                <h2>Filters</h2>
+                <div class="filters-grid">
+                    <div class="form-group">
+                        <label for="filterCategory">Category</label>
+                        <select id="filterCategory">
+                            <option value="all">All categories</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="filterYear">Year</label>
+                        <select id="filterYear">
+                            <option value="">All years</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="filterMonthNum">Month</label>
+                        <select id="filterMonthNum">
+                            <option value="">All months</option>
+                            <option value="01">01 - January</option>
+                            <option value="02">02 - February</option>
+                            <option value="03">03 - March</option>
+                            <option value="04">04 - April</option>
+                            <option value="05">05 - May</option>
+                            <option value="06">06 - June</option>
+                            <option value="07">07 - July</option>
+                            <option value="08">08 - August</option>
+                            <option value="09">09 - September</option>
+                            <option value="10">10 - October</option>
+                            <option value="11">11 - November</option>
+                            <option value="12">12 - December</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>&nbsp;</label>
+                        <button id="clearFilters" type="button" class="add-btn">Clear Filters</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Charts -->
+            <section class="charts-section">
+                <h2>Charts</h2>
+                <div class="charts-grid">
+                    <div class="chart-card">
+                        <h3>Expenses by Category</h3>
+                        <canvas id="chartPie"></canvas>
+                    </div>
+                    <div class="chart-card">
+                        <h3>Income vs Expense Over Time</h3>
+                        <canvas id="chartLine"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Transaction Form -->
+            <section class="form-section">
+                <h2>Add New Transaction</h2>
+                <form id="transactionForm" class="transaction-form">
+                    <div class="form-group">
+                        <label for="amount">Amount ($)</label>
+                        <input type="number" id="amount" name="amount" step="0.01" min="0" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">Category</label>
+                        <select id="category" name="category" required>
+                            <option value="">Select a category</option>
+                            <option value="food">🍔 Food</option>
+                            <option value="transportation">🚗 Transportation</option>
+                            <option value="entertainment">🎬 Entertainment</option>
+                            <option value="shopping">🛍️ Shopping</option>
+                            <option value="bills">💡 Bills & Utilities</option>
+                            <option value="healthcare">🏥 Healthcare</option>
+                            <option value="education">📚 Education</option>
+                            <option value="salary">💼 Salary</option>
+                            <option value="freelance">💻 Freelance</option>
+                            <option value="investment">📈 Investment</option>
+                            <option value="other">📝 Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="type">Type</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" id="income" name="type" value="income" required>
+                                <span class="radio-custom"></span>
+                                Income
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" id="expense" name="type" value="expense" required>
+                                <span class="radio-custom"></span>
+                                Expense
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="date">Date</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="excludeFromMain">Options</label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="excludeFromMain">
+                            <span class="checkbox-custom"></span>
+                            Exclude from main summary
+                        </label>
+                    </div>
+
+                    <button type="submit" class="add-btn">Add Transaction</button>
+                </form>
+            </section>
+
+            <!-- Transactions List -->
+            <section class="transactions-section">
+                <h2>Recent Transactions</h2>
+                <div id="transactionsList" class="transactions-list">
+                    <p class="no-transactions">No transactions yet. Add your first transaction above!</p>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="script.js"></script>
+</body>
+</html>
