@@ -35,5 +35,14 @@ No build step required. Modern browsers recommended.
 - `style.css` — layout and component styles
 - `script.js` — app logic, persistence, filters, summaries, charts
 
-## License
-MIT
+##what to expect on V2 
+- Export data to CSV/JSON.
+
+- Add currency switcher (USD, EUR, etc.) with conversion API.
+
+- Polished responsive design (mobile-friendly).
+
+##what to expect in v3 
+- a backend so it becomes fullstack 
+- smart AI feature that Advices you how to manage your incomes and Expenses based on you(your Situation, goals, plans and etc..)
+- deployment(vercel, netlify)
